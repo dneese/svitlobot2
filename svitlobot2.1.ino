@@ -56,9 +56,14 @@ String channel_key;
 unsigned long inactivityTimer = 0;
 #define INACTIVITY_TIMEOUT 120000 // 2 хвилини в мілісекундах
 
+#define LED_PIN LED_BUILTIN  // Вбудований світлодіод
+
 void setup() {
   Serial.begin(115200);
   EEPROM.begin(EEPROM_SIZE);
+
+  pinMode(LED_PIN, OUTPUT);
+  digitalWrite(LED_PIN, HIGH);  // Світлодіод вимкнено (вбудований світлодіод зазвичай активний низьким сигналом)
 
   // Зчитування параметрів з EEPROM
   ssid = readStringFromEEPROM(SSID_ADDR);
@@ -96,6 +101,8 @@ void loop() {
     server.handleClient();
     checkInactivity();
   }
+
+  updateLEDStatus();
 }
 
 void startWebServer() {
@@ -222,6 +229,8 @@ void checkInactivity() {
 
 void handleClearEEPROM() {
   for (int i = 0; i < EEPROM_SIZE; i++) {
+
+
     EEPROM.write(i, 0);
   }
   EEPROM.commit();
@@ -246,4 +255,23 @@ void writeStringToEEPROM(int addr, String data) {
     EEPROM.write(addr + i, data[i]);
   }
   EEPROM.write(addr + data.length(), '\0'); // Додаємо нульовий символ в кінець рядка
+}
+
+void updateLEDStatus() {
+  static unsigned long lastTime = 0;
+  unsigned long currentTime = millis();
+  
+  if (WiFi.status() == WL_CONNECTED) {
+    if (currentTime - lastTime >= 3000) {  // Миготіння раз в три секунди
+      digitalWrite(LED_PIN, !digitalRead(LED_PIN)); // Перемикання стану світлодіода
+      lastTime = currentTime;
+    }
+  } else if (WiFi.softAPgetStationNum() > 0) {
+    digitalWrite(LED_PIN, LOW);  // Світлодіод світиться постійно
+  } else {
+    if (currentTime - lastTime >= 1000) {  // Миготіння раз в секунду
+      digitalWrite(LED_PIN, !digitalRead(LED_PIN)); // Перемикання стану світлодіода
+      lastTime = currentTime;
+    }
+  }
 }
