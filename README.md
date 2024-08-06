@@ -1,4 +1,13 @@
-# Wemos D1 Mini HTTP Request для Світлоботу
+# Wemos D1 Mini HTTP Request для Світлоботу та healthchecks
+скриншот1
+![скриншот1](https://github.com/dneese/Svitlobot/blob/main/IMG_20240806_075333_580.jpg)
+
+скриншот2
+
+![скриншот2](https://github.com/dneese/Svitlobot/blob/main/IMG_20240806_075335_721.jpg)
+
+
+
 
 # Інструкція з прошивання за допомогою ESPHome Flasher
 
@@ -41,7 +50,7 @@
 Тепер ваш ESP пристрій успішно прошитий з використанням ESPHome Flasher. Ви можете перевірити функціональність пристрою та переконатися, що все працює належним чином.
 
 
-Цей проект використовує Wemos D1 Mini для періодичного виконання HTTP-запитів кожні 1 хвилину.
+Цей проект використовує Wemos D1 Mini для періодичного виконання HTTP-запитів кожні 1хвилину 30 секунд
 
 ## прошивка через Arduino IDE 
 
@@ -49,6 +58,7 @@
 - Wemos D1 Mini
 - WiFi мережа
 - Канальний ключ для сервісу [SvitloBot](https://svitlobot.in.ua)
+-  ключ для сервісу [healthchecks](https://healthchecks.io).
 
 ## Налаштування
 
