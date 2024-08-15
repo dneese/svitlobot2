@@ -1,0 +1,14 @@
+{
+  "name": "svitlobot2.7.5.+ healthchecks_nodemcu",
+  "version": "2.7.5",
+  "home_assistant_domain": "my_esp_device",
+  "funding_url": "https://svitlobot.in.ua",
+  "builds": [
+    {
+      "chipFamily": "ESP8266",
+      "parts": [
+        { "path": "https://svitlobotinstall.000.pe/svitlobot2.7.5.%2B%20healthchecks_nodemcu.bin", "offset": 0 }
+      ]
+    }
+  ]
+}
