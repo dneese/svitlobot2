@@ -6,6 +6,9 @@
 <img src="https://github.com/dneese/Svitlobot/blob/main/IMG_20240806_075335_721.jpg" alt="скиншот 2" width="300"/>
 </p>
 
+# Вебустановщик прямо з браузера
+https://svitlobotinstall.000.pe/
+
 # Інструкція з прошивання за допомогою ESPHome Flasher
 
 Цей документ надає покрокову інструкцію щодо прошивання `bin` файлу на вашому ESP пристрої за допомогою ESPHome Flasher.
