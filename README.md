@@ -2,12 +2,12 @@
 
 скриншот
 <p align="center">
-<img src="https://github.com/dneese/Svitlobot/blob/main/IMG_20240806_075333_580.jpg" alt="скиншот 1" width="300"/>
-<img src="https://github.com/dneese/Svitlobot/blob/main/IMG_20240806_075335_721.jpg" alt="скиншот 2" width="300"/>
+<img src="https://github.com/dneese/Svitlobot2/blob/main/IMG_20240806_075333_580.jpg" alt="скиншот 1" width="300"/>
+<img src="https://github.com/dneese/svitlobot2/blob/main/IMG_20240806_075335_721.jpg" alt="скиншот 2" width="300"/>
 </p>
 
 # Вебустановщик прямо з браузера
-https://svitlobotinstall.000.pe/
+[svitlobotinstall](https://svitlobotinstall.000.pe)
 
 # Інструкція з прошивання за допомогою ESPHome Flasher
 
