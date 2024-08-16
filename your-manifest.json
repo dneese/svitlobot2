@@ -7,7 +7,7 @@
     {
       "chipFamily": "ESP8266",
       "parts": [
-        { "path": "https://github.com/dneese/svitlobot2/raw/main/svitlobot2.7.5.+%20healthchecks_nodemcu.bin", "offset": 0 }
+        { "path": "https://github.com/dneese/svitlobot2/raw/main/svitlobot2.7.5.+ healthchecks_nodemcu.bin", "offset": 0 }
       ]
     }
   ]
