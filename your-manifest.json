@@ -1,6 +1,6 @@
 {
-  "name": "svitlobot2.7.5.+ healthchecks_nodemcu",
-  "version": "2.7.5",
+  "name": "svitlobot2_7_9_esp8266.nodemcuv2",
+  "version": "2.7.9",
   "home_assistant_domain": "my_esp_device",
   "funding_url": "https://svitlobot.in.ua",
   "builds": [
