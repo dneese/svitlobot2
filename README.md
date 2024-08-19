@@ -17,7 +17,7 @@
 
 - Комп'ютер з операційною системою Windows, macOS або Linux.
 - USB кабель для підключення вашого ESP пристрою до комп'ютера.
-- Завантажений `bin` файл, який ви хочете прошити, наприклад [svitlobot2.7.5.nodemcu.bin](https://github.com/dneese/svitlobot2/raw/main/svitlobot2.7.5.+healthchecks_nodemcu.bin)
+- Завантажений `bin` файл, який ви хочете прошити, наприклад [svitlobot2_7_9_esp8266.generic.bin](https://github.com/dneese/svitlobot2/raw/main/svitlobot2_7_9_esp8266.generic.bin)
 
 - [ESPHome Flasher](https://github.com/esphome/esphome-flasher/releases) — програма для прошивання ESP пристроїв.
 
