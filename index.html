@@ -61,8 +61,17 @@
 
     // Додавання обробника події для перенаправлення після успішної прошивки
     document.querySelector('esp-web-install-button').addEventListener('success', () => {
-      alert('Firmware flashed successfully!');
+      alert('Прошивка успішно завантажена!');
       window.location.href = 'http://192.168.4.1/scan';
+    });
+
+    // Локалізація діалогових вікон
+    document.querySelector('esp-web-install-button').addEventListener('error', (event) => {
+      alert(`Помилка: ${event.detail.message}`);
+    });
+
+    document.querySelector('esp-web-install-button').addEventListener('progress', (event) => {
+      console.log(`Прогрес: ${event.detail.percentage}%`);
     });
   </script>
 </body>
