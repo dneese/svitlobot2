@@ -52,7 +52,18 @@
   <p><strong>Увага:</strong> Програмне забезпечення надається без гарантій. Використовуйте на свій страх і ризик. Адміністрація не несе відповідальності за пошкодження обладнання чи втрату даних.</p>
 
   <p>Для обговорення прошивки та отримання допомоги, перейдіть за посиланням: <a href="https://t.me/svitlobot_api/1021">Обговорення прошивки</a>.</p>
-</body>
-</html>
+
+  <script>
+    // Перевірка підтримки Web Serial API
+    if (!('serial' in navigator)) {
+      alert('Ваш браузер не підтримує Web Serial API. Будь ласка, використовуйте сучасний браузер, такий як Google Chrome.');
+    }
+
+    // Додавання обробника події для перенаправлення після успішної прошивки
+    document.querySelector('esp-web-install-button').addEventListener('success', () => {
+      alert('Firmware flashed successfully!');
+      window.location.href = 'http://192.168.4.1/scan';
+    });
+  </script>
 </body>
 </html>
