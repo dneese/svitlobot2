@@ -45,7 +45,7 @@
   </style>
 </head>
 <body>
-  <h1>Веб test esp-web-tools@10.0.1 інсталятор прошивкі світлобот на ESP8266</h1>
+  <h1>Веб інсталятор 10 прошивкі світлобот на ESP8266</h1>
   <p><strong>Рекомендовано для:</strong> NodeMCU, Wemos D1 mini, ESP-12 та інших пристроїв на базі ESP8266 з 4MB флеш-пам'яті.</p>
   <ol>
     <li>Підключіть ESP8266 до комп'ютера. Натисніть кнопку "Install" нижче, виберіть потрібний порт та завантажте прошивку на пристрій.</li>
@@ -57,7 +57,7 @@
   </ol>
 
   <h1>Install Firmware on ESP8266 Wemos d1 mini</h1>
-  <script type="module" src="https://unpkg.com/browse/esp-web-tools@10.0.1/dist/web/install-button.js?module"></script>
+  <script type="module" src="https://unpkg.com/esp-web-tools@10/dist/web/install-button.js?module"></script>
   <esp-web-install-button manifest="test.json"></esp-web-install-button>
 
   <!-- Форма для введення Wi-Fi та ключа світлобота -->
@@ -102,7 +102,12 @@
     // Додавання обробника події для перенаправлення після успішної прошивки
     document.querySelector('esp-web-install-button').addEventListener('success', () => {
       alert('Прошивка успішно завантажена!');
-      document.getElementById('wifi-setup').style.display = 'block'; // Показати форму для Wi-Fi та ключа світлобота
+      const wifiSetup = document.getElementById('wifi-setup');
+      if (wifiSetup) {
+        wifiSetup.style.display = 'block'; // Показати форму для Wi-Fi та ключа світлобота
+      } else {
+        console.error('Element with id "wifi-setup" not found');
+      }
     });
 
     // Локалізація діалогових вікон
