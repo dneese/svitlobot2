@@ -45,13 +45,13 @@
   </style>
 </head>
 <body>
-  <h1>Веб інсталятор 11 прошивкі світлобот на ESP8266</h1>
+  <h1>Веб інсталятор 12 прошивкі світлобот на ESP8266</h1>
   <p><strong>Рекомендовано для:</strong> NodeMCU, Wemos D1 mini, ESP-12 та інших пристроїв на базі ESP8266 з 4MB флеш-пам'яті.</p>
   <ol>
     <li>Підключіть ESP8266 до комп'ютера. Натисніть кнопку "Install" нижче, виберіть потрібний порт та завантажте прошивку на пристрій.</li>
     <li>Після першого запуску пристрій ESP8266 сам створить Wi-Fi мережу з іменем "svitlobot" без паролю або паролем "12345677".</li>
     <li>Підключіться до цієї мережі зі свого пристрою.</li>
-    <li>Вас автоматично переправить на сторінку пристрою. Якщо ні то, відкрийте браузер та перейдіть за адресою: <a href="http://192.168.4.1">http://192.168.4.1</a>.</li>
+    <li>Вас автоматично переправить на сторінку пристрою. Якщо ні, відкрийте браузер та перейдіть за адресою: <a href="http://192.168.4.1">http://192.168.4.1</a>.</li>
     <li>Заповніть форму налаштувань, ввівши SSID вашої Wi-Fi мережі, пароль та ключ каналу.</li>
     <li>Натисніть "Save". Пристрій перезавантажиться та спробує підключитися до вказаної Wi-Fi мережі.</li>
   </ol>
@@ -96,15 +96,20 @@
   <script>
     // Перевірка підтримки Web Serial API
     if (!('serial' in navigator)) {
-      alert('Ваш браузер не підтримує Web Serial API. Будь ласка, використовуйте сучасний браузер, такий як Google Chrome.');
+      alert('Ваш браузер не підтримує Web Serial API. Використовуйте Chrome.');
+    } else {
+      console.log('Web Serial API is supported');
     }
 
     // Додавання обробника події для перенаправлення після успішної прошивки
     document.querySelector('esp-web-install-button').addEventListener('success', () => {
+      console.log('Success event fired');
       alert('Прошивка успішно завантажена!');
+      
       const wifiSetup = document.getElementById('wifi-setup');
       if (wifiSetup) {
         wifiSetup.style.display = 'block'; // Показати форму для Wi-Fi та ключа світлобота
+        console.log('Form displayed successfully');
       } else {
         console.error('Element with id "wifi-setup" not found');
       }
@@ -112,6 +117,7 @@
 
     // Локалізація діалогових вікон
     document.querySelector('esp-web-install-button').addEventListener('error', (event) => {
+      console.error('Error event fired:', event.detail.message);
       alert(`Помилка: ${event.detail.message}`);
     });
 
