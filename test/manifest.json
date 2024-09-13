@@ -1,13 +1,13 @@
 {
-  "name": "test",
-  "version": "2.8.4",
+  "name": "svitlobot",
+  "version": "2.8.5",
   "home_assistant_domain": "my_esp_device",
   "funding_url": "https://dneese.github.io/svitlobot2",
   "builds": [
     {
       "chipFamily": "ESP8266",
       "parts": [
-        { "path": "test2.bin", "offset": 0 }
+        { "path": "test3.bin", "offset": 0 }
       ]
     }
   ]
