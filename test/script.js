@@ -29,7 +29,7 @@ function addCounter() {
         <p>Кількість встановлених прошивок:</p>
         <!-- hitwebcounter Code START -->
         <a href="https://www.hitwebcounter.com" target="_blank">
-            <img src="https://hitwebcounter.com/counter/counter.php?page=16250054&style=0018&nbdigits=5&type=page&initCount=141" title="Counter Widget" alt="Visit counter For Websites" border="0" />
+            <img src="https://hitwebcounter.com/counter/counter.php?page=16250054&style=0018&nbdigits=5&type=page&initCount=41" title="Counter Widget" alt="Visit counter For Websites" border="0" />
         </a>
     `;
     document.querySelector('.container').appendChild(counterContainer);
@@ -77,9 +77,11 @@ document.getElementById('sendParams').addEventListener('click', () => {
                         const response = new TextDecoder().decode(value);
                         if (response.includes("OK")) {
                             showMessage(3, "Параметри успішно відправлені на ESP!");
-                            addCounter(); // Додаємо лічильник після успішного відправлення параметрів
+                            setTimeout(() => {
+                                addCounter(); // Додаємо лічильник після успішного відправлення параметрів
+                            }, 1000); // Затримка для забезпечення оновлення сторінки
                         } else {
-                            showMessage(3, "Помилка відправки параметрів.", true);
+                            showMessage(3, "Помилка відправки, повторіть спробу.", true);
                         }
                         writer.releaseLock();
                         reader.releaseLock();
