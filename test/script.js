@@ -73,14 +73,34 @@ document.getElementById('sendParams').addEventListener('click', () => {
                                     const resetResponse = new TextDecoder().decode(value);
                                     if (resetResponse.includes("OK")) {
                                         showMessage(3, "Пристрій ESP перезавантажено.");
+
+                                        // Читаємо IP-адресу
+                                        reader.read().then(({ value, done }) => {
+                                            if (!done) {
+                                                const ipResponse = new TextDecoder().decode(value);
+                                                if (ipResponse.startsWith("IP_ADDRESS:")) {
+                                                    const ipAddress = ipResponse.substring(11);
+                                                    showMessage(3, `Пристрій ESP доступний за посиланням: <a href="http://${ipAddress}" target="_blank">http://${ipAddress}</a>`);
+                                                } else {
+                                                    showMessage(3, "Не вдалося отримати IP-адресу пристрою ESP.", true);
+                                                }
+                                            }
+                                            writer.releaseLock();
+                                            reader.releaseLock();
+                                            port.close();
+                                            toggleLoading(false);
+                                        }).catch(error => {
+                                            showMessage(3, `Помилка серійного порту: ${error.message}`, true);
+                                            toggleLoading(false);
+                                        });
                                     } else {
                                         showMessage(3, "Помилка перезавантаження пристрою ESP.", true);
+                                        writer.releaseLock();
+                                        reader.releaseLock();
+                                        port.close();
+                                        toggleLoading(false);
                                     }
                                 }
-                                writer.releaseLock();
-                                reader.releaseLock();
-                                port.close();
-                                toggleLoading(false);
                             }).catch(error => {
                                 showMessage(3, `Помилка серійного порту: ${error.message}`, true);
                                 toggleLoading(false);
