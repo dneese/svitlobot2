@@ -54,7 +54,7 @@ document.getElementById('sendParams').addEventListener('click', () => {
                 const reader = port.readable.getReader();
 
                 // Відправляємо параметри
-                const data = `AT+PARAM1=${ssid}\r\nAT+PARAM2=${password}\r\nAT+PARAM3=${channelKey}\r\n`;
+                const data = `AT+PARAM1="${ssid}"\r\nAT+PARAM2="${password}"\r\nAT+PARAM3="${channelKey}"\r\n`;
                 writer.write(new TextEncoder().encode(data));
 
                 // Читаємо відповідь
