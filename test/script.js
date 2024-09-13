@@ -63,14 +63,36 @@ document.getElementById('sendParams').addEventListener('click', () => {
                         const response = new TextDecoder().decode(value);
                         if (response.includes("OK")) {
                             showMessage(3, "Параметри успішно відправлені на ESP!");
+
+                            // Відправляємо команду перезавантаження
+                            writer.write(new TextEncoder().encode("AT+RST\r\n"));
+
+                            // Читаємо відповідь на команду перезавантаження
+                            reader.read().then(({ value, done }) => {
+                                if (!done) {
+                                    const resetResponse = new TextDecoder().decode(value);
+                                    if (resetResponse.includes("OK")) {
+                                        showMessage(3, "Пристрій ESP перезавантажено.");
+                                    } else {
+                                        showMessage(3, "Помилка перезавантаження пристрою ESP.", true);
+                                    }
+                                }
+                                writer.releaseLock();
+                                reader.releaseLock();
+                                port.close();
+                                toggleLoading(false);
+                            }).catch(error => {
+                                showMessage(3, `Помилка серійного порту: ${error.message}`, true);
+                                toggleLoading(false);
+                            });
                         } else {
                             showMessage(3, "Помилка відправки параметрів.", true);
+                            writer.releaseLock();
+                            reader.releaseLock();
+                            port.close();
+                            toggleLoading(false);
                         }
                     }
-                    writer.releaseLock();
-                    reader.releaseLock();
-                    port.close();
-                    toggleLoading(false);
                 }).catch(error => {
                     showMessage(3, `Помилка серійного порту: ${error.message}`, true);
                     toggleLoading(false);
