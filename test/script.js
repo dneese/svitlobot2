@@ -64,7 +64,7 @@ document.getElementById('sendParams').addEventListener('click', () => {
                         if (response.includes("OK")) {
                             showMessage(3, "Параметри успішно відправлені на ESP!");
                         } else {
-                            showMessage(3, "Помилка відправки параметрів.", true);
+                            showMessage(3, "Помилка відправки, повторіть спробу.", true);
                         }
                         writer.releaseLock();
                         reader.releaseLock();
