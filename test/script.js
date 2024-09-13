@@ -21,6 +21,20 @@ function toggleLoading(show) {
     loadingElement.style.display = show ? 'block' : 'none';
 }
 
+// Додаємо лічильник встановлених прошивок
+function addCounter() {
+    const counterContainer = document.createElement('div');
+    counterContainer.className = 'counter';
+    counterContainer.innerHTML = `
+        <p>Кількість встановлених прошивок:</p>
+        <!-- hitwebcounter Code START -->
+        <a href="https://www.hitwebcounter.com" target="_blank">
+            <img src="https://hitwebcounter.com/counter/counter.php?page=16250054&style=0018&nbdigits=5&type=page&initCount=141" title="Counter Widget" alt="Visit counter For Websites" border="0" />
+        </a>
+    `;
+    document.querySelector('.container').appendChild(counterContainer);
+}
+
 // Переходимо до кроку 2 після прошивки
 document.getElementById('nextToStep2').addEventListener('click', () => {
     showStep('step2');
@@ -63,8 +77,9 @@ document.getElementById('sendParams').addEventListener('click', () => {
                         const response = new TextDecoder().decode(value);
                         if (response.includes("OK")) {
                             showMessage(3, "Параметри успішно відправлені на ESP!");
+                            addCounter(); // Додаємо лічильник після успішного відправлення параметрів
                         } else {
-                            showMessage(3, "Помилка відправки, повторіть спробу.", true);
+                            showMessage(3, "Помилка відправки параметрів.", true);
                         }
                         writer.releaseLock();
                         reader.releaseLock();
