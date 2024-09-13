@@ -28,11 +28,11 @@ document.getElementById('nextToStep2').addEventListener('click', () => {
 
 // Переходимо до кроку 3 після введення параметрів
 document.getElementById('nextToStep3').addEventListener('click', () => {
-    const param1 = document.getElementById('param1').value;
-    const param2 = document.getElementById('param2').value;
-    const param3 = document.getElementById('param3').value;
+    const ssid = document.getElementById('ssid').value;
+    const password = document.getElementById('password').value;
+    const channelKey = document.getElementById('channelKey').value;
 
-    if (!param1 || !param2 || !param3) {
+    if (!ssid || !password || !channelKey) {
         showMessage(2, 'Будь ласка, заповніть всі поля', true);
         return;
     }
@@ -42,9 +42,9 @@ document.getElementById('nextToStep3').addEventListener('click', () => {
 
 // Відправка параметрів на пристрій ESP
 document.getElementById('sendParams').addEventListener('click', () => {
-    const param1 = document.getElementById('param1').value;
-    const param2 = document.getElementById('param2').value;
-    const param3 = document.getElementById('param3').value;
+    const ssid = document.getElementById('ssid').value;
+    const password = document.getElementById('password').value;
+    const channelKey = document.getElementById('channelKey').value;
 
     if ('serial' in navigator) {
         toggleLoading(true);
@@ -54,7 +54,7 @@ document.getElementById('sendParams').addEventListener('click', () => {
                 const reader = port.readable.getReader();
 
                 // Відправляємо параметри
-                const data = `AT+PARAM1="${param1}"\r\nAT+PARAM2="${param2}"\r\nAT+PARAM3="${param3}"\r\n`;
+                const data = `AT+PARAM1="${ssid}"\r\nAT+PARAM2="${password}"\r\nAT+PARAM3="${channelKey}"\r\n`;
                 writer.write(new TextEncoder().encode(data));
 
                 // Читаємо відповідь
