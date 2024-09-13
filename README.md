@@ -7,7 +7,7 @@
 </p>
 
 # Вебустановщик прямо з браузера
-[dneese.github.io/svitlobot2](https://dneese.github.io/svitlobot2/) або [web.esphome.io](https://web.esphome.io)
+[dneese.github.io/svitlobot2](https://dneese.github.io/svitlobot2/) або [прошивка і майстер налаштування](https://dneese.github.io/svitlobot2/test/index.html)
 
 # Інструкція з прошивання за допомогою ESPHome Flasher
 
