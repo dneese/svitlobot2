@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Майстер налаштування ESP</title>
+    <style>
+        .step { display: none; }
+        .active { display: block; }
+        .loading { display: none; }
+        .error { color: red; }
+    </style>
+</head>
+<body>
+    <h1>Майстер налаштування ESP</h1>
+
+    <!-- Крок 1: Прошивка -->
+    <div id="step1" class="step active">
+        <h2>Крок 1: Прошивка пристрою</h2>
+        <esp-web-install-button manifest="manifest.json"></esp-web-install-button>
+        <button id="nextToStep2">Далі</button>
+        <p id="step1Message"></p>
+    </div>
+
+    <!-- Крок 2: Введення параметрів -->
+    <div id="step2" class="step">
+        <h2>Крок 2: Введення параметрів</h2>
+        <input type="text" id="param1" placeholder="Параметр 1">
+        <input type="text" id="param2" placeholder="Параметр 2">
+        <input type="text" id="param3" placeholder="Параметр 3">
+        <button id="nextToStep3">Далі</button>
+        <p id="step2Message"></p>
+    </div>
+
+    <!-- Крок 3: Підтвердження -->
+    <div id="step3" class="step">
+        <h2>Крок 3: Завершення</h2>
+        <button id="sendParams">Відправити параметри</button>
+        <p id="step3Message"></p>
+        <div id="loading" class="loading">Завантаження...</div>
+    </div>
+
+    <!-- Підключення скриптів -->
+    <script type="module" src="https://unpkg.com/esp-web-tools@7.1.0/dist/web/install-button.js?module"></script>
+    <script src="script.js"></script>
+</body>
+</html>
