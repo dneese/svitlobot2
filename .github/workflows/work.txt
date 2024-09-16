@@ -1,0 +1,252 @@
+Назва файлу прошивки може бути будь-якою, але для прикладу ми будемо використовувати назву `firmware.bin`. Ви можете змінити цю назву відповідно до вашого конкретного файлу прошивки.
+
+### Оновлений HTML (index.html)
+```html
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Майстер налаштування ESP</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .input-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+            font-size: 14px;
+        }
+        .input-group input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .message {
+            margin-top: 15px;
+            text-align: center;
+            font-size: 14px;
+        }
+        .loading {
+            display: none;
+            text-align: center;
+            color: #333;
+        }
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Майстер налаштування ESP</h1>
+        <div class="input-group">
+            <label for="ssid">SSID Wi-Fi:</label>
+            <input type="text" id="ssid" placeholder="Введіть SSID">
+        </div>
+        <div class="input-group">
+            <label for="password">Пароль Wi-Fi:</label>
+            <input type="password" id="password" placeholder="Введіть пароль">
+        </div>
+        <div class="input-group">
+            <label for="channelKey">Ключ світлоботу:</label>
+            <input type="text" id="channelKey" placeholder="Введіть ключ світлоботу">
+        </div>
+        <button id="uploadFirmware">Завантажити прошивку</button>
+        <p id="message" class="message"></p>
+        <div id="loading" class="loading">Завантаження...</div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+```
+
+### Оновлений JavaScript (script.js)
+```javascript
+// Показуємо повідомлення
+function showMessage(message, isError = false) {
+    const messageElement = document.getElementById('message');
+    messageElement.innerText = message;
+    if (isError) {
+        messageElement.classList.add('error');
+    } else {
+        messageElement.classList.remove('error');
+    }
+}
+
+// Показуємо або ховаємо спінер завантаження
+function toggleLoading(show) {
+    const loadingElement = document.getElementById('loading');
+    loadingElement.style.display = show ? 'block' : 'none';
+}
+
+// Перевірка введених даних
+function validateInputs(ssid, password, channelKey) {
+    if (ssid.length < 3 || ssid.length > 32) {
+        showMessage('SSID повинен бути від 3 до 32 символів', true);
+        return false;
+    }
+    if (password.length < 8) {
+        showMessage('Пароль повинен містити принаймні 8 символів', true);
+        return false;
+    }
+    if (channelKey.length !== 16) {
+        showMessage('Ключ світлоботу повинен містити 16 символів', true);
+        return false;
+    }
+    return true;
+}
+
+// Відправка параметрів на ESP
+async function sendParamsToESP(port, ssid, password, channelKey) {
+    try {
+        const writer = port.writable.getWriter();
+        const reader = port.readable.getReader();
+
+        // Відправляємо параметри
+        const data = `AT+PARAM1="${ssid}"\r\nAT+PARAM2="${password}"\r\nAT+PARAM3="${channelKey}"\r\n`;
+        await writer.write(new TextEncoder().encode(data));
+
+        // Читаємо відповідь
+        const { value, done } = await reader.read();
+        if (!done) {
+            const response = new TextDecoder().decode(value);
+            if (response.includes("OK")) {
+                showMessage("Параметри успішно відправлені на ESP!");
+                writer.releaseLock();
+                reader.releaseLock();
+                return true;
+            } else {
+                showMessage("Не вдалося відправити параметри.", true);
+                writer.releaseLock();
+                reader.releaseLock();
+                return false;
+            }
+        }
+    } catch (error) {
+        showMessage(`Помилка серійного порту: ${error.message}`, true);
+        return false;
+    }
+}
+
+// Завантаження прошивки з сервера та прошивка ESP
+async function uploadFirmware() {
+    const ssid = document.getElementById('ssid').value;
+    const password = document.getElementById('password').value;
+    const channelKey = document.getElementById('channelKey').value;
+
+    if (!validateInputs(ssid, password, channelKey)) {
+        return;
+    }
+
+    toggleLoading(true);
+    showMessage('Завантаження прошивки з сервера...');
+
+    try {
+        // Завантажуємо файл прошивки з сервера
+        const response = await fetch('firmware.bin');
+        if (!response.ok) {
+            throw new Error('Не вдалося завантажити файл прошивки.');
+        }
+        const firmwareData = new Uint8Array(await response.arrayBuffer());
+
+        if ('serial' in navigator) {
+            try {
+                const port = await navigator.serial.requestPort();
+                await port.open({ baudRate: 115200 });
+
+                const writer = port.writable.getWriter();
+                showMessage('Завантаження прошивки на ESP...');
+
+                // Відправляємо прошивку на ESP
+                await writer.write(firmwareData);
+                showMessage('Прошивка успішно завантажена!');
+
+                // Відправляємо параметри на ESP
+                const success = await sendParamsToESP(port, ssid, password, channelKey);
+                if (success) {
+                    port.close();
+                }
+            } catch (error) {
+                showMessage(`Помилка: ${error.message}`, true);
+            } finally {
+                toggleLoading(false);
+            }
+        } else {
+            showMessage('Ваш браузер не підтримує Web Serial API', true);
+            toggleLoading(false);
+        }
+    } catch (error) {
+        showMessage(`Помилка: ${error.message}`, true);
+        toggleLoading(false);
+    }
+}
+
+document.getElementById('uploadFirmware').addEventListener('click', uploadFirmware);
+```
+
+### Пояснення коду:
+
+1. **HTML**:
+    - Створює інтерфейс для введення параметрів Wi-Fi, паролю та ключа світлоботу.
+    - Включає кнопку для завантаження прошивки на ESP.
+
+2. **JavaScript**:
+    - **showMessage**: Відображає повідомлення користувачу.
+    - **toggleLoading**: Показує або ховає спінер завантаження.
+    - **validateInputs**: Перевіряє введені дані (SSID, пароль, ключ світлоботу).
+    - **sendParamsToESP**: Відправляє параметри на ESP через серійний порт.
+    - **uploadFirmware**: Завантажує файл прошивки з сервера, відкриває серійний порт, відправляє прошивку на ESP, а потім відправляє параметри на ESP та обробляє помилки.
+
+### Як це працює:
+1. Користувач заповнює поля SSID, пароль та ключ світлоботу.
+2. Користувач натискає кнопку "Завантажити прошивку".
+3. Скрипт перевіряє введені дані.
+4. Скрипт завантажує файл прошивки з сервера (назва файлу `firmware.bin`).
+5. Скрипт відкриває серійний порт на комп'ютері користувача.
+6. Скрипт відправляє прошивку на ESP через серійний порт.
+7. Після успішної прошивки скрипт відправляє параметри на ESP через той самий серійний порт.
+8. Користувач отримує повідомлення про успіх або помилку.
+
+Цей підхід дозволяє користувачам завантажувати нову прошивку на ESP через веб-інтерфейс, використовуючи Web Serial API, і налаштовувати параметри Wi-Fi, паролю та ключа світлоботу. Якщо у вас є додаткові питання або вимоги, будь ласка, повідомте мене.
