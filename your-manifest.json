@@ -9,6 +9,12 @@
       "parts": [
         { "path": "svitlobot2_8_0_3..bin", "offset": 0 }
       ]
+    },
+    {
+      "chipFamily": "ESP32",
+      "parts": [
+        { "path": "svitlobot2_esp32_2_8_3.bin", "offset": 0 }
+      ]
     }
   ]
 }
