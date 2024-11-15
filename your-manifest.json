@@ -1,13 +1,13 @@
 {
-  "name": "svitlobot2_8_0_3",
-  "version": "2.8.0.3",
+  "name": "svitlobot2_8_0_4",
+  "version": "2.8.0.4",
   "home_assistant_domain": "my_esp_device",
   "funding_url": "https://svitlobot.in.ua",
   "builds": [
     {
       "chipFamily": "ESP8266",
       "parts": [
-        { "path": "svitlobot2_8_0_3.esp8266.nodemcuv2.bin", "offset": 0 }
+        { "path": "svitlobot2_8_0_4.ino.bin", "offset": 0 }
       ]
     },
     {
