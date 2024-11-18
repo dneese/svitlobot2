@@ -13,7 +13,7 @@
     {
       "chipFamily": "ESP32",
       "parts": [
-        { "path": "svitlobot2_esp32_2_8_3.ino.merged.bin", "offset": 0 }
+        { "path": "svitlobot2_esp32_2_8_0_4.ino.merged.bin", "offset": 0 }
       ]
     }
   ]
