@@ -7,7 +7,7 @@
 </p>
 
 # Вебустановщик прямо з браузера
-[dneese.github.io/svitlobot2](https://dneese.github.io/svitlobot2/) або [прошивка і майстер налаштування beta test](https://svitlobot.pp.ua/)
+[Вебустановщик прямо з браузера dneese.github.io/svitlobot2](https://dneese.github.io/svitlobot2/)
 
 
 
