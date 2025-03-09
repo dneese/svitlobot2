@@ -1,4 +1,4 @@
-# Wemos D1 Mini ESP8266 HTTP Request для Світлоботу та healthchecks
+#  HTTP Request для Світлоботу та healthchecks for ESP32 & ESP8266
 
 скриншот
 <p align="center">
