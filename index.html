@@ -192,17 +192,17 @@
     const installSection = document.getElementById('installSection');
     const installBtn = document.getElementById('installBtn');
 
-    // Мапінг пристроїв та версій
+    // Мапінг пристроїв та версій  svitlobot_esp8266_2_9_0.bin
     const devices = {
       'wemos-d1-mini': { 
         chipFamily: 'ESP8266', 
         name: 'Wemos D1 Mini',
-        versions: ['v2.4', 'v2.6', 'v2.7.3','v2.7.5','v2.7.8','v2.7.8.1','v2.7','v2.7.9.1','v2.7.8','v2.8.0.1','v2.8.0.2','v2.8.0.3','v2.8.0.3.1','v2.8.0.4','v2.8.0.5'] 
+        versions: ['v2.4', 'v2.6', 'v2.7.3','v2.7.5','v2.7.8','v2.7.8.1','v2.7','v2.7.9.1','v2.7.8','v2.8.0.1','v2.8.0.2','v2.8.0.3','v2.8.0.3.1','v2.8.0.4','v2.8.0.5','v2.9.0' ] 
       },
       'esp32-wroom': { 
         chipFamily: 'ESP32', 
         name: 'ESP32 Wroom',
-        versions: ['v2.8.0.4', 'v2.8.0.5'] 
+        versions: ['v2.8.0.4', 'v2.8.0.5','v2.9.0'] 
       },
       'esp32-c3-mini': { 
         chipFamily: 'ESP32-C3', 
@@ -229,13 +229,14 @@
          'v2.8.0.3': 'https://dneese.github.io/svitlobot2/svitlobot2_8_0_3.esp8266.nodemcuv2.bin',  
          'v2.8.0.3.1': 'https://dneese.github.io/svitlobot2/svitlobot2_8_0_3.noLed.bin',    
          'v2.8.0.4': 'https://dneese.github.io/svitlobot2/svitlobot2_8_0_4.ino.bin ',    
-         'v2.8.0.5': 'https://dneese.github.io/svitlobot2/svitlobot2_8_0_5_esp8266.bin'    
-  
+         'v2.8.0.5': 'https://dneese.github.io/svitlobot2/svitlobot2_8_0_5_esp8266.bin',    
+          'v2.9.0': 'https://dneese.github.io/svitlobot2/svitlobot_esp8266_2_9_0.bin'
            
       },
       'ESP32': { 
         'v2.8.0.4': 'https://dneese.github.io/svitlobot2/svitlobot2_esp32_2_8_0_4.ino.merged.bin',   
-        'v2.8.0.5': 'https://dneese.github.io/svitlobot2/svitlobot2_esp32_2_8_0_5.bin'
+        'v2.8.0.5': 'https://dneese.github.io/svitlobot2/svitlobot2_esp32_2_8_0_5.bin',
+        'v2.9.0': 'https://dneese.github.io/svitlobot2/svitlobot_esp32_2_9_0.bin'
         
       },
       'ESP32-C3': { 
