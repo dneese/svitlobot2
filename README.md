@@ -2,8 +2,8 @@
 
 скриншот
 <p align="center">
-<img src="https://github.com/dneese/Svitlobot2/blob/main/IMG_20240806_075333_580.jpg" alt="скиншот 1" width="300"/>
-<img src="https://github.com/dneese/svitlobot2/blob/main/IMG_20240806_075335_721.jpg" alt="скиншот 2" width="300"/>
+<img src="https://github.com/dneese/Svitlobot2/blob/main/IMG_20251121_210546_651.jpg" alt="скиншот 1" width="300"/>
+<img src="https://github.com/dneese/svitlobot2/blob/main/IMG_20251121_210549_353.jpg" alt="скиншот 2" width="300"/>
 </p>
 
 # Вебустановщик прямо з браузера
@@ -57,3 +57,4 @@ svitlobot або healthchecks.io
 6. Натисніть "Save". Пристрій перезавантажиться та спробує підключитися до вказаної Wi-Fi мережі.
 
 7. Починаючи з версії 2.6 очистку пам'яті EEPROM (скидання налаштувань) можливо зробити чотирима швидкими перезавантаженнями плати. Проміжок між вмиканням-вимиканням має бути не меншим за 3 секунди і не більше 20 секунд.
+
