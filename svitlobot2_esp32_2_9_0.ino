@@ -674,7 +674,7 @@ void handleWiFiScan() {
   html += "<label for='password'>Пароль WiFi:</label>";
   html += "<input type='password' id='password' name='password' value='' placeholder='Залиште пустим, щоб не змінювати'>";
   
-  html += "<label for='channelKey'>Ключ Світлобота (32 символи):</label>";
+  html += "<label for='channelKey'>Ключ Світлобота для смартфону (10 символів):</label>";
   html += "<input type='text' id='channelKey' name='channelKey' value='" + readStringFromEEPROM(CHANNEL_KEY_ADDR) + "' placeholder='Ваш Channel Key'>";
 
   html += "<label for='token'>URL Healthcheck (опціонально):</label>";
