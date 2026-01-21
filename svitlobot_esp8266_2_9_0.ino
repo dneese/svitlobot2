@@ -669,7 +669,7 @@ void handleWiFiScan() { // Сторінка налаштувань.
   html += "<input type='password' id='password' name='password' value='' placeholder='Залиште пустим, щоб не змінювати'>";
   
   // АВТОЗАПОВНЕННЯ: Channel Key
-  html += "<label for='channelKey'>Ключ Світлобота (32 символи):</label>";
+  html += "<label for='channelKey'>Ключ Світлобота жля смартфону (10 символів):</label>";
   html += "<input type='text' id='channelKey' name='channelKey' value='" + readStringFromEEPROM(CHANNEL_KEY_ADDR) + "' placeholder='Ваш Channel Key'>";
 
   // АВТОЗАПОВНЕННЯ: Healthcheck URL
