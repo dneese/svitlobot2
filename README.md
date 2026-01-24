@@ -2,8 +2,8 @@
 
 скриншот
 <p align="center">
-<img src="https://github.com/dneese/svitlobot2/docs/img/screen1" alt="скиншот 1" width="300"/>
-<img src="https://github.com/dneese/svitlobot2/docs/img/screen2" alt="скиншот 2" width="300"/>
+<img src="https://github.com/dneese/svitlobot2/docs/img/screen1.jpg" alt="скиншот 1" width="300"/>
+<img src="https://github.com/dneese/svitlobot2/docs/img/screen2.jpg" alt="скиншот 2" width="300"/>
 </p>
 
 # Вебустановщик прямо з браузера
