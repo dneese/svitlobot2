@@ -149,7 +149,7 @@
 </head>
 <body>
   <div class="container">
-    <h1>⚡ Веб-інсталятор Світлобот</h1>
+    <h1>⚡2 Веб-інсталятор Світлобот</h1>
     <p class="subtitle">Прошивка для ESP8266 та ESP32</p>
 
     <div class="form-group">
@@ -185,112 +185,112 @@
     </div>
   </div>
 
-  <script>
-    const deviceSelect = document.getElementById('deviceSelect');
-    const versionSelect = document.getElementById('versionSelect');
-    const versionGroup = document.getElementById('versionGroup');
-    const installSection = document.getElementById('installSection');
-    const installBtn = document.getElementById('installBtn');
+ 
+   <script>
+  const deviceSelect = document.getElementById('deviceSelect');
+  const versionSelect = document.getElementById('versionSelect');
+  const versionGroup = document.getElementById('versionGroup');
+  const installSection = document.getElementById('installSection');
+  const installBtn = document.getElementById('installBtn');
 
-    // Мапінг пристроїв та версій  svitlobot_esp8266_2_9_0.bin
-		   const devices = {
-		  'wemos-d1-mini': { 
-			chipFamily: 'ESP8266', 
-			name: 'Wemos D1 Mini',
-			versions: ['v2.9.0', 'v2.8.0.5', 'v2.8.0.4', 'v2.8.0.3-noLed', 'v2.8.0.3', 'v2.8.0.2', 'v2.8.0.1', 'v2.8.0', 'v2.7.9.1', 'v2.7.9', 'v2.7.8.1', 'v2.7.8-generic', 'v2.7.5', 'v2.7.3', 'v2.7', 'v2.6', 'v2.4'] 
-		  },
-		  'esp32-wroom': { 
-			chipFamily: 'ESP32', 
-			name: 'ESP32 Wroom',
-			versions: ['v2.9.0', 'v2.8.0.5', 'v2.8.0.4'] 
-		  },
-		  'esp32-c3-mini': { 
-			chipFamily: 'ESP32-C3', 
-			name: 'ESP32-C3 Mini',
-			versions: ['v2.9.0'] 
-		  }
-		};
+  const devices = {
+    'wemos-d1-mini': {
+      chipFamily: 'ESP8266',
+      name: 'Wemos D1 Mini',
+      versions: ['v2.9.0', 'v2.8.0.5', 'v2.8.0.4', 'v2.8.0.3-noLed', 'v2.8.0.3', 'v2.8.0.2', 'v2.8.0.1', 'v2.8.0', 'v2.7.9.1', 'v2.7.9', 'v2.7.8.1', 'v2.7.8-generic', 'v2.7.5', 'v2.7.3', 'v2.7', 'v2.6', 'v2.4']
+    },
+    'esp32-wroom': {
+      chipFamily: 'ESP32',
+      name: 'ESP32 Wroom',
+      versions: ['v2.9.0', 'v2.8.0.5', 'v2.8.0.4']
+    },
+    'esp32-c3-mini': {
+      chipFamily: 'ESP32-C3',
+      name: 'ESP32-C3 Mini',
+      versions: ['v2.9.0']
+    }
+  };
 
-	const firmwarePaths = {
-  'ESP8266': {
-    'v2.9.0': '/firmware/esp8266/svitlobot_esp8266_2_9_0.bin',
-    'v2.8.0.5': '/firmware/esp8266/svitlobot2_8_0_5_esp8266.bin',
-    'v2.8.0.4': '/firmware/esp8266/svitlobot2_8_0_4.ino.bin',
-    'v2.8.0.3-noLed': '/firmware/esp8266/svitlobot2_8_0_3.noLed.bin',
-    'v2.8.0.3': '/firmware/esp8266/svitlobot2_8_0_3.esp8266.nodemcuv2.bin',
-    'v2.8.0.2': '/firmware/esp8266/svitlobot2_8_0_2.esp8266.nodemcuv2.bin',
-    'v2.8.0.1': '/firmware/esp8266/svitlobot2_8_0_1.ino.bin',
-    'v2.8.0': '/firmware/esp8266/svitlobot2_8_0.esp8266.nodemcuv2.bin',
-    'v2.7.9.1': '/firmware/esp8266/svitlobot2_7_9_esp8266.generic.bin',
-    'v2.7.9': '/firmware/esp8266/svitlobot2_7_9_esp8266.nodemcuv2.bin',
-    'v2.7.8.1': '/firmware/esp8266/svitlobot2.7.8.esp8266.nodemcuv2.bin',
-    'v2.7.8-generic': '/firmware/esp8266/svitlobot2.7.8.esp8266.generic.bin',
-    'v2.7.5': '/firmware/esp8266/svitlobot2.7.5.+healthchecks_nodemcu.bin',
-    'v2.7.3': '/firmware/esp8266/svitlobot2.7.3.nodemcu.bin',
-    'v2.7': '/firmware/esp8266/svitlobot2.7.nodemcu.bin',
-    'v2.6': '/firmware/esp8266/svitlobot2.6.nodemcu.bin',
-    'v2.4': '/firmware/esp8266/svitlobot2.4.ino.nodemcu.bin'
-  },
-  'ESP32': {
-    'v2.9.0': '/firmware/esp32/svitlobot_esp32_2_9_0.bin',
-    'v2.8.0.5': '/firmware/esp32/svitlobot2_esp32_2_8_0_5.bin',
-    'v2.8.0.4': '/firmware/esp32/svitlobot2_esp32_2_8_0_4.ino.merged.bin'
-  },
-  'ESP32-C3': {
-    'v2.9.0': '/firmware/esp32/svitlobot2_esp32c3_2_9_0.bin'
-  }
-};
+  // 🔥 ВИПРАВЛЕНІ ШЛЯХИ БЕЗ ПОЧАТКОВОГО СЛЕША 🔥
+  const firmwarePaths = {
+    'ESP8266': {
+      'v2.9.0': 'firmware/esp8266/svitlobot_esp8266_2_9_0.bin',
+      'v2.8.0.5': 'firmware/esp8266/svitlobot2_8_0_5_esp8266.bin',
+      'v2.8.0.4': 'firmware/esp8266/svitlobot2_8_0_4.ino.bin',
+      'v2.8.0.3-noLed': 'firmware/esp8266/svitlobot2_8_0_3.noLed.bin',
+      'v2.8.0.3': 'firmware/esp8266/svitlobot2_8_0_3.esp8266.nodemcuv2.bin',
+      'v2.8.0.2': 'firmware/esp8266/svitlobot2_8_0_2.esp8266.nodemcuv2.bin',
+      'v2.8.0.1': 'firmware/esp8266/svitlobot2_8_0_1.ino.bin',
+      'v2.8.0': 'firmware/esp8266/svitlobot2_8_0.esp8266.nodemcuv2.bin',
+      'v2.7.9.1': 'firmware/esp8266/svitlobot2_7_9_esp8266.generic.bin',
+      'v2.7.9': 'firmware/esp8266/svitlobot2_7_9_esp8266.nodemcuv2.bin',
+      'v2.7.8.1': 'firmware/esp8266/svitlobot2.7.8.esp8266.nodemcuv2.bin',
+      'v2.7.8-generic': 'firmware/esp8266/svitlobot2.7.8.esp8266.generic.bin',
+      'v2.7.5': 'firmware/esp8266/svitlobot2.7.5.+healthchecks_nodemcu.bin',
+      'v2.7.3': 'firmware/esp8266/svitlobot2.7.3.nodemcu.bin',
+      'v2.7': 'firmware/esp8266/svitlobot2.7.nodemcu.bin',
+      'v2.6': 'firmware/esp8266/svitlobot2.6.nodemcu.bin',
+      'v2.4': 'firmware/esp8266/svitlobot2.4.ino.nodemcu.bin'
+    },
+    'ESP32': {
+      'v2.9.0': 'firmware/esp32/svitlobot_esp32_2_9_0.bin',
+      'v2.8.0.5': 'firmware/esp32/svitlobot2_esp32_2_8_0_5.bin',
+      'v2.8.0.4': 'firmware/esp32/svitlobot2_esp32_2_8_0_4.ino.merged.bin'
+    },
+    'ESP32-C3': {
+      'v2.9.0': 'firmware/esp32/svitlobot2_esp32c3_2_9_0.bin'
+    }
+  };
 
+  deviceSelect.addEventListener('change', () => {
+    const device = deviceSelect.value;
+    versionSelect.innerHTML = '<option value="">-- Оберіть версію --</option>';
+    
+    if (device) {
+      versionGroup.classList.remove('hidden');
+      devices[device].versions.forEach(v => {
+        const option = document.createElement('option');
+        option.value = v;
+        option.textContent = `Версія ${v}`;
+        versionSelect.appendChild(option);
+      });
+      installSection.classList.add('hidden');
+    } else {
+      versionGroup.classList.add('hidden');
+      installSection.classList.add('hidden');
+    }
+  });
 
-
-    // Обробка вибору пристрою
-    deviceSelect.addEventListener('change', () => {
-      const device = deviceSelect.value;
-      versionSelect.innerHTML = '<option value="">-- Оберіть версію --</option>';
+  versionSelect.addEventListener('change', () => {
+    const device = deviceSelect.value;
+    const version = versionSelect.value;
+    
+    if (device && version) {
+      const deviceInfo = devices[device];
+      const chipFamily = deviceInfo.chipFamily;
+      const path = firmwarePaths[chipFamily][version];
       
-      if (device) {
-        versionGroup.classList.remove('hidden');
-        devices[device].versions.forEach(v => {
-          const option = document.createElement('option');
-          option.value = v;
-          option.textContent = `Версія ${v}`;
-          versionSelect.appendChild(option);
-        });
-        installSection.classList.add('hidden');
-      } else {
-        versionGroup.classList.add('hidden');
-        installSection.classList.add('hidden');
-      }
-    });
-
-    // Обробка вибору версії
-    versionSelect.addEventListener('change', () => {
-      const device = deviceSelect.value;
-      const version = versionSelect.value;
+      // 🔥 Безпечне створення маніфесту + відносний шлях 🔥
+      const manifest = {
+        name: `Svitlobot ${version} для ${deviceInfo.name}`,
+        version: version,
+        new_install_prompt_erase: true,
+        builds: [
+          {
+            chipFamily: chipFamily,
+            parts: [{ path: path, offset: 0 }]
+          }
+        ]
+      };
       
-      if (device && version) {
-        const deviceInfo = devices[device];
-        const chipFamily = deviceInfo.chipFamily;
-        const path = firmwarePaths[chipFamily][version];
-        
-        // Генеруємо маніфест
-        const manifest = {
-          name: `Svitlobot ${version} для ${deviceInfo.name}`,
-          version: version,
-          new_install_prompt_erase: true,
-          builds: [
-            {
-              chipFamily: chipFamily,
-              parts: [{ path: path, offset: 0 }]
-            }
-          ]
-        };
-        
-        const blob = new Blob([JSON.stringify(manifest)], { type: 'application/json' });
-        installBtn.manifest = URL.createObjectURL(blob);
-        installSection.classList.remove('hidden');
-      }
-    });
-  </script>
+      const blob = new Blob([JSON.stringify(manifest)], { type: 'application/json' });
+      const manifestUrl = URL.createObjectURL(blob);
+      
+      // Встановлюємо маніфест
+      installBtn.manifest = manifestUrl;
+      installSection.classList.remove('hidden');
+    }
+  });
+</script>
 </body>
 </html>
