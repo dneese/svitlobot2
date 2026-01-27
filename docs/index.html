@@ -1,164 +1,177 @@
 <!DOCTYPE html>
-<html lang="uk" class="scroll-smooth">
+<html lang="uk">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Світлобот • Flash</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Світлобот • Прошивка</title>
   <script type="module" src="https://unpkg.com/esp-web-tools@10/dist/web/install-button.js?module"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --bg: #0a0e17;
-      --card: #111827;
-      --text: #f1f5f9;
-      --text-muted: #94a3b8;
-      --primary: #818cf8;
-      --primary-dark: #6366f1;
-      --accent: #a5b4fc;
-      --success: #34d399;
-    }
-    * { margin:0; padding:0; box-sizing:border-box; }
     body {
-      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-      background: var(--bg);
-      color: var(--text);
+      font-family: Arial, Helvetica, sans-serif;
+      background: #000;
+      color: #fff;
+      margin: 0;
+      padding: 0;
       min-height: 100vh;
-      background-image: radial-gradient(circle at 30% 20%, rgba(129,140,248,0.07) 0%, transparent 40%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
-    .container { max-width: 480px; margin: 0 auto; padding: 3rem 1.5rem; }
-    .card {
-      background: var(--card);
-      border-radius: 1.75rem;
-      padding: 2.75rem 2.25rem;
-      box-shadow: 0 30px 60px -15px rgba(0,0,0,0.7), 0 0 40px rgba(129,140,248,0.12);
-      backdrop-filter: blur(16px);
-      border: 1px solid rgba(129,140,248,0.15);
-      transition: transform 0.4s ease, box-shadow 0.4s ease;
-    }
-    .card:hover { transform: translateY(-10px); box-shadow: 0 40px 80px -20px rgba(0,0,0,0.8); }
-    h1 {
-      font-size: 2.5rem;
-      font-weight: 800;
-      background: linear-gradient(90deg, #c7d2fe, #a5b4fc, #818cf8);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+    .container {
+      background: #333;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 0 15px rgba(0, 250, 250, 0.2);
+      width: 90%;
+      max-width: 460px;
       text-align: center;
-      margin-bottom: 1rem;
-      letter-spacing: -0.025em;
     }
-    .subtitle { text-align: center; color: var(--text-muted); font-size: 1.1rem; margin-bottom: 2.75rem; }
-    .label { font-weight: 600; color: var(--text); margin-bottom: 0.75rem; display: block; font-size: 0.95rem; }
+    h1 {
+      color: #fff;
+      margin-bottom: 15px;
+      font-size: 1.8em;
+      position: relative;
+    }
+    h1::before {
+      content: '';
+      position: absolute;
+      top: -15px; left: -15px; right: -15px; bottom: -15px;
+      border: 2px solid #00fafa;
+      border-radius: 12px;
+      animation: glow 2s infinite;
+    }
+    @keyframes glow {
+      0%, 100% { box-shadow: 0 0 10px #00fafa; }
+      50% { box-shadow: 0 0 25px #00fafa; }
+    }
+    .subtitle {
+      color: #ccc;
+      margin-bottom: 25px;
+    }
+    .form-group {
+      margin-bottom: 20px;
+      text-align: left;
+    }
+    label {
+      display: block;
+      color: #fff;
+      font-weight: bold;
+      margin-bottom: 6px;
+    }
     select {
       width: 100%;
-      padding: 1.1rem 1.5rem;
-      border-radius: 1.25rem;
-      border: 1px solid rgba(129,140,248,0.25);
-      background: rgba(17,24,39,0.7);
-      color: var(--text);
-      font-size: 1.05rem;
-      appearance: none;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' fill='%23a5b4fc' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-position: right 1.5rem center;
-      background-size: 0.9rem;
-      transition: all 0.3s ease;
+      padding: 10px;
+      background: #222;
+      border: 1px solid #444;
+      border-radius: 4px;
+      color: #fff;
+      font-size: 1em;
     }
-    select:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 4px rgba(129,140,248,0.2); }
-    .install-section { text-align: center; margin-top: 2.75rem; }
-    esp-web-install-button { --esp-tools-button-color: var(--primary); --esp-tools-button-text-color: white; --esp-tools-button-border-radius: 1.25rem; width: 100%; }
-    .btn-flash {
+    select:focus {
+      outline: none;
+      border-color: #00fafa;
+      box-shadow: 0 0 8px rgba(0,250,250,0.5);
+    }
+    .install-section {
+      margin-top: 25px;
+      padding: 20px;
+      background: #222;
+      border: 1px solid #444;
+      border-radius: 8px;
+    }
+    esp-web-install-button {
+      --esp-tools-button-color: #28a745;
+      --esp-tools-button-text-color: #fff;
+      --esp-tools-button-border-radius: 4px;
       width: 100%;
-      padding: 1.3rem;
-      font-size: 1.25rem;
-      font-weight: 700;
-      border-radius: 1.25rem;
-      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    }
+    .custom-install-btn {
+      width: 100%;
+      padding: 14px;
+      font-size: 1.2em;
+      font-weight: bold;
+      background: #28a745;
       color: white;
       border: none;
+      border-radius: 4px;
       cursor: pointer;
-      transition: all 0.4s ease;
-      box-shadow: 0 12px 30px rgba(129,140,248,0.3);
     }
-    .btn-flash:hover { transform: translateY(-4px); box-shadow: 0 18px 40px rgba(129,140,248,0.45); }
-    .loader {
-      display: none;
-      width: 64px;
-      height: 64px;
-      margin: 2.5rem auto;
-      border: 7px solid rgba(129,140,248,0.15);
-      border-top: 7px solid var(--primary);
-      border-radius: 50%;
-      animation: spin 1.1s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
+    .custom-install-btn:hover {
+      background: #218838;
     }
-    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-    .success-message {
-      display: none;
-      text-align: center;
-      margin-top: 1.75rem;
-      font-size: 1.35rem;
-      font-weight: 700;
-      color: var(--success);
-      animation: fadeInUp 0.8s ease;
+    .warning {
+      background: #222;
+      border-left: 4px solid #d29922;
+      padding: 12px;
+      margin-top: 25px;
+      border-radius: 4px;
+      font-size: 0.95em;
+      color: #e3b505;
     }
-    @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-    .alert { margin-top: 2.5rem; padding: 1.25rem; border-radius: 1.25rem; background: rgba(249,115,22,0.12); border-left: 5px solid #f97316; font-size: 0.95rem; color: #fed7aa; }
+    .instructions {
+      margin-top: 30px;
+      text-align: left;
+      font-size: 0.95em;
+      color: #ddd;
+    }
+    .hidden { display: none; }
   </style>
 </head>
 <body>
   <div class="container">
-    <div class="card">
-      <h1>Світлобот</h1>
-      <p class="subtitle">Веб-флешер прошивок</p>
+    <h1>Світлобот</h1>
+    <p class="subtitle">Веб-інсталятор прошивки</p>
 
-      <div class="mb-7">
-        <label class="label">Пристрій</label>
-        <select id="deviceSelect">
-          <option value="">Оберіть пристрій</option>
-          <option value="wemos-d1-mini">Wemos D1 Mini (ESP8266)</option>
-          <option value="esp32-wroom">ESP32 Wroom</option>
-         
-        </select>
-      </div>
+    <div class="form-group">
+      <label for="deviceSelect">Оберіть пристрій:</label>
+      <select id="deviceSelect">
+        <option value="">-- Оберіть --</option>
+        <option value="wemos-d1-mini">Wemos D1 Mini (ESP8266)</option>
+        <option value="esp32-wroom">ESP32 Wroom</option>
+        
+      </select>
+    </div>
 
-      <div class="mb-7 d-none" id="versionGroup">
-        <label class="label">Версія прошивки</label>
-        <select id="versionSelect">
-          <option value="">Оберіть версію</option>
-        </select>
-      </div>
+    <div class="form-group hidden" id="versionGroup">
+      <label for="versionSelect">Оберіть версію прошивки:</label>
+      <select id="versionSelect">
+        <option value="">-- Оберіть --</option>
+      </select>
+    </div>
 
-      <div class="install-section d-none" id="installSection">
-        <p class="text-xl font-semibold mb-5">Готові прошити?</p>
-        <esp-web-install-button id="installBtn">
-          <button slot="activate" class="btn-flash">
-            <i class="fas fa-bolt mr-3"></i> Прошити пристрій
-          </button>
-        </esp-web-install-button>
-        <div class="loader" id="loader"></div>
-        <div class="success-message" id="successMessage">Прошивка завершена успішно! 🎉</div>
-      </div>
+    <div class="install-section hidden" id="installSection">
+      <p>Підключіть пристрій через USB та натисніть нижче</p>
+      <esp-web-install-button id="installBtn">
+        <button slot="activate" class="custom-install-btn">Прошити</button>
+        <span slot="unsupported">Chrome/Edge</span>
+        <span slot="not-allowed">HTTPS</span>
+      </esp-web-install-button>
+    </div>
 
-      <div class="alert">
-        <strong>Увага:</strong> Прошивка відбувається на ваш страх і ризик. Переконайтеся у правильному виборі.
-      </div>
+    <div class="warning">
+      <strong>Важливо:</strong> Програма надається «як є» (as is), без будь-яких гарантій. Автор не несе відповідальності за працездатність, втрату даних чи будь-які наслідки. Використовуєте виключно на власний ризик — претензій не приймаємо.
+    </div>
+
+    <div class="instructions">
+      <h3>Інструкція:</h3>
+      <ol>
+        <li>Підключіть ESP до комп'ютера. Натисніть "Прошити" → оберіть порт.</li>
+        <li>Після прошивки пристрій створить Wi-Fi <strong>svitlobot</strong> (пароль <strong>12345677</strong> або без).</li>
+        <li>Підключіться до мережі.</li>
+        <li>Відкриється налаштування (або вручну: <a href="http://192.168.4.1">http://192.168.4.1</a>).</li>
+        <li>Введіть SSID, пароль Wi-Fi, ключ каналу → "Save".</li>
+        <li>Пристрій перезавантажиться і підключиться до вашої мережі.</li>
+      </ol>
+      <p>Обговорення: <a href="https://t.me/svitlobot_api/1021">Telegram</a></p>
     </div>
   </div>
 
-  <audio id="successSound" preload="auto">
-    <source src="https://assets.mixkit.co/sfx/preview/mixkit-achievement-bell-2056.mp3" type="audio/mpeg">
-  </audio>
-
   <script>
-    // Той самий робочий скрипт + лоадер і звук
     const deviceSelect = document.getElementById('deviceSelect');
     const versionSelect = document.getElementById('versionSelect');
     const versionGroup = document.getElementById('versionGroup');
     const installSection = document.getElementById('installSection');
     const installBtn = document.getElementById('installBtn');
-    const loader = document.getElementById('loader');
-    const successMessage = document.getElementById('successMessage');
-    const successSound = document.getElementById('successSound');
 
     const devices = {
       'wemos-d1-mini': {chipFamily:'ESP8266',name:'Wemos D1 Mini',versions:['v2.9.0','v2.8.0.5','v2.8.0.4','v2.8.0.3-noLed','v2.8.0.3','v2.8.0.2','v2.8.0.1','v2.8.0','v2.7.9.1','v2.7.9','v2.7.8.1','v2.7.8-generic','v2.7.5','v2.7.3','v2.7','v2.6','v2.4']},
@@ -200,17 +213,17 @@
       const device = deviceSelect.value;
       versionSelect.innerHTML = '<option value="">Оберіть версію</option>';
       if (device) {
-        versionGroup.classList.remove('d-none');
+        versionGroup.classList.remove('hidden');
         devices[device].versions.forEach(v => {
           const option = document.createElement('option');
           option.value = v;
           option.textContent = `Версія ${v}`;
           versionSelect.appendChild(option);
         });
-        installSection.classList.add('d-none');
+        installSection.classList.add('hidden');
       } else {
-        versionGroup.classList.add('d-none');
-        installSection.classList.add('d-none');
+        versionGroup.classList.add('hidden');
+        installSection.classList.add('hidden');
       }
     });
 
@@ -234,30 +247,8 @@
 
         const blob = new Blob([JSON.stringify(manifest)], {type: 'application/json'});
         installBtn.manifest = URL.createObjectURL(blob);
-        installSection.classList.remove('d-none');
+        installSection.classList.remove('hidden');
       }
-    });
-
-    // Лоадер і звук успіху
-    installBtn.addEventListener('install-start', () => {
-      loader.style.display = 'block';
-      installBtn.querySelector('button').disabled = true;
-      installBtn.querySelector('button').textContent = 'Прошивається...';
-    });
-
-    installBtn.addEventListener('install-success', () => {
-      loader.style.display = 'none';
-      successMessage.style.display = 'block';
-      successSound.play().catch(e => console.log('Sound error:', e));
-      installBtn.querySelector('button').disabled = false;
-      installBtn.querySelector('button').textContent = 'Прошити пристрій';
-      setTimeout(() => successMessage.style.display = 'none', 6000);
-    });
-
-    installBtn.addEventListener('install-fail', () => {
-      loader.style.display = 'none';
-      installBtn.querySelector('button').disabled = false;
-      installBtn.querySelector('button').textContent = 'Прошити пристрій';
     });
   </script>
 </body>
