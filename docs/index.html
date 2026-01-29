@@ -175,8 +175,8 @@
 
     const devices = {
       'wemos-d1-mini': {chipFamily:'ESP8266',name:'Wemos D1 Mini',versions:['v2.9.0','v2.8.0.5','v2.8.0.4','v2.8.0.3-noLed','v2.8.0.3','v2.8.0.2','v2.8.0.1','v2.8.0','v2.7.9.1','v2.7.9','v2.7.8.1','v2.7.8-generic','v2.7.5','v2.7.3','v2.7','v2.6','v2.4']},
-      'esp32-wroom': {chipFamily:'ESP32',name:'ESP32 Wroom',versions:['v2.9.0','v2.8.0.5','v2.8.0.4']},
-      'esp32-c3-mini': {chipFamily:'ESP32-C3',name:'ESP32-C3 Mini',versions:['v2.9.0']}
+      'esp32-wroom': {chipFamily:'ESP32',name:'ESP32 Wroom',versions:['v3.7','v2.9.0','v2.8.0.5','v2.8.0.4']},
+      'esp32-c3-mini': {chipFamily:'ESP32-C3',name:'ESP32-C3 Mini',versions:['v3.7','v2.9.0']}
     };
 
     const firmwarePaths = {
@@ -200,12 +200,15 @@
         'v2.4': 'firmware/esp8266/svitlobot2.4.ino.nodemcu.bin'
       },
       'ESP32': {
+        'v3.7': 'firmware/esp32/svitlobot_esp32_v3.7.target.bin',
         'v2.9.0': 'firmware/esp32/svitlobot_esp32_2_9_0.bin',
         'v2.8.0.5': 'firmware/esp32/svitlobot2_esp32_2_8_0_5.bin',
         'v2.8.0.4': 'firmware/esp32/svitlobot2_esp32_2_8_0_4.ino.merged.bin'
       },
       'ESP32-C3': {
+        'v3.7': 'firmware/esp32/svitlobot_esp32c3_v3.7_target.bin',
         'v2.9.0': 'firmware/esp32/svitlobot2_esp32c3_2_9_0.bin'
+        
       }
     };
 
